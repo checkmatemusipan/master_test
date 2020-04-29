@@ -22,6 +22,7 @@ class Client_sock{
    int32_t MakeSocket();
    //set addr and port
    void SetOpt(const char* host, int32_t port);
+   //
 };
 
 
