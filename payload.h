@@ -1,6 +1,6 @@
 #include <iostream>
 #ifndef __class_payload
-#define
+#define __class_payload
 
 class payload{
   private:
@@ -13,12 +13,15 @@ class payload{
      //destructor
      ~payload();
      //off buffering
-     bool ctrlbuff();
+     bool ctrlbuff(void);
      //make struct
-     bool make_buffer();
+     bool make_buffer(void);
      //add p32
-     uint32_t p32(uint32_t input);
-     //
+     uint32_t p32(uint32_t input,bool little);
+     
+     //debug
+     void print_all(void);
+     
 };
 
 #endif
