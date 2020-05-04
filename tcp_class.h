@@ -7,9 +7,12 @@
 #include <unistd.h>
 #include <inttypes.h>
 #include <iostream>
+#include "payload.h"
 
 
 class Client_sock{
+ private:
+   payload pay;
  public:
    int32_t sockfd;
    struct sockaddr_in addr;
