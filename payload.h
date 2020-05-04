@@ -18,7 +18,8 @@ class payload{
      bool make_buffer(void);
      //add p32
      uint32_t p32(uint32_t input,bool little);
-     
+     //add p64
+     uint64_t p64(uint64_t input,bool little);
      //debug
      void print_all(void);
      
