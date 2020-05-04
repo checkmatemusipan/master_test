@@ -12,6 +12,9 @@ class payload{
      payload();
      //destructor
      ~payload();
+     //getter
+     uint32_t len() const;
+     void*    buf();
      //off buffering
      bool ctrlbuff(void);
      //make struct

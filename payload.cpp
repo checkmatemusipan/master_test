@@ -48,6 +48,14 @@ void payload::print_all(void){
    std::cout << "payload ptr=" << (void*)this->pay<< std::endl;
 }
 
+uint32_t payload::len() const{
+   return this->paylength;
+}
+
+void* payload::buf(){
+   return (void*)this->pay;
+}
+
 bool payload::ctrlbuff(){
    return false;
 }
