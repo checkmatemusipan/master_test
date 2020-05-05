@@ -7,9 +7,12 @@
 #include <unistd.h>
 #include <inttypes.h>
 #include <iostream>
+#include "payload.h"
 
 
 class Client_sock{
+ private:
+   payload pay;
  public:
    int32_t sockfd;
    struct sockaddr_in addr;
@@ -22,7 +25,13 @@ class Client_sock{
    int32_t MakeSocket();
    //set addr and port
    void SetOpt(const char* host, int32_t port);
-   //
+   //connect
+   bool Connect();
+   //send
+   bool Send(payload payl);
+   //recv
+   int32_t Recv(payload payl,uint32_t len);
+   //int32_t RecvUntil(payload payl,uint8_t* word);
 };
 
 

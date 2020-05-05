@@ -1,9 +1,10 @@
 #include <iostream>
 #ifndef __class_payload
-#define
+#define __class_payload
 
 class payload{
   private:
+     uint32_t memlength;
      uint32_t paylength;
      uint8_t* pay;
   public:
@@ -11,10 +12,25 @@ class payload{
      payload();
      //destructor
      ~payload();
+     //operator
+     payload  operator +(payload input);
+     uint32_t operator <<(const char* str);
+     //getter
+     uint32_t len() const;
+     void*    buf();
      //off buffering
-     bool ctrlbuff();
+     bool ctrlbuff(void);
      //make struct
-     bool make_buffer();
+     bool make_buffer(void);
+     //add pack32
+     uint32_t p32(uint32_t input,bool little);
+     //add pack64
+     uint64_t p64(uint64_t input,bool little);
+     //unpack
+
+     //debug
+     void print_all(void);
+     
 };
 
 #endif
