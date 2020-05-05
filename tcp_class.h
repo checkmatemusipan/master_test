@@ -29,6 +29,9 @@ class Client_sock{
    bool Connect();
    //send
    bool Send(payload payl);
+   //recv
+   int32_t Recv(payload payl,uint32_t len);
+   //int32_t RecvUntil(payload payl,uint8_t* word);
 };
 
 

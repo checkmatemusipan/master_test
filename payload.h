@@ -12,6 +12,9 @@ class payload{
      payload();
      //destructor
      ~payload();
+     //operator
+     payload  operator +(payload input);
+     uint32_t operator <<(const char* str);
      //getter
      uint32_t len() const;
      void*    buf();
@@ -19,10 +22,12 @@ class payload{
      bool ctrlbuff(void);
      //make struct
      bool make_buffer(void);
-     //add p32
+     //add pack32
      uint32_t p32(uint32_t input,bool little);
-     //add p64
+     //add pack64
      uint64_t p64(uint64_t input,bool little);
+     //unpack
+
      //debug
      void print_all(void);
      

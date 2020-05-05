@@ -139,3 +139,32 @@ uint64_t payload::p64(uint64_t input, bool little){
   return 0xdead6464;
 }
 
+payload payload::operator +(payload input){
+  return *this;
+}
+
+uint32_t payload::operator <<(const char* str){
+  uint32_t len = (uint32_t)strlen(str);
+  if(this->paylength == 0xdeadbeef){
+     this->make_buffer();
+  }
+  if( (this->paylength + len) >= this->memlength){
+     uint8_t* temp_mov;
+     temp_mov = new uint8_t [this->memlength+len];
+     memcpy(temp_mov, this->pay,this->paylength);
+     delete[] this->pay;
+     this->pay = temp_mov;
+     memcpy(this->pay+this->paylength, (uint8_t*)str, len);
+     this->paylength +=len;
+     this->memlength +=len;
+     return this->paylength;
+  }
+  else{
+     memcpy(this->pay+this->paylength, (uint8_t*)str, len);
+     this->paylength +=len;
+     return this->paylength;
+  }
+  perror("cannot add str funciton=operator +");
+  return 0xdead0001;  
+}
+
