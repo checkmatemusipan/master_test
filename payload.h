@@ -27,7 +27,9 @@ class payload{
      //add pack64
      uint64_t p64(uint64_t input,bool little);
      //unpack
-
+     //u32,u64
+     //check in word from payload
+     bool check_word(const char* word);
      //debug
      void print_all(void);
      

@@ -168,3 +168,25 @@ uint32_t payload::operator <<(const char* str){
   return 0xdead0001;  
 }
 
+bool payload::check_word(const char* word){
+  uint32_t len = strlen(word);
+  uint32_t counter=0;
+  if(len == 0){
+     perror("error payload check failed function=check_word");
+     return false;
+  }
+  //search log(N*len) too long....
+  for(uint32_t i=0;i< this->paylength;i++){
+     if(memcmp(&this->pay[i], &word[0],1)==0){
+	if(len == 1){
+          return true;
+	}
+       	else{
+          if(memcmp((this->pay)+i,word,len)==0){
+	    return true;
+	  }
+	}
+     }
+  }//for loop end
+  return false;  
+}

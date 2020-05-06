@@ -32,6 +32,7 @@ bool Client_sock::Send(payload payl){
    return true;
 }
 
+//heap over flow (danger) read-> (buf<len)need fixed
 int32_t Client_sock::Recv(payload payl,uint32_t len){
    int32_t ret = read(this->sockfd, payl.buf(), len);
    if(ret == -1){
@@ -40,7 +41,21 @@ int32_t Client_sock::Recv(payload payl,uint32_t len){
    }
    return ret;
 }
+//heap over flow ueto same
+bool Client_sock::RecvUntil(payload* payl,const char* word){
+   uint32_t bin =0;  
+   int32_t ret = read(this->sockfd, (void*)&bin, 1);
+   if(ret == -1){
+     perror("cannot recv packet from socket function=recvuntil");
+     return false;
+   }
+   *payl<<(const char*)&bin;
+   if(strlen(word) ==1 && payl->check_word(word)){
+     return true;
+   } 
+   for(uint32_t i=0;i<strlen(word);i++){
+     this->Recv(*payl,1);
+   }
+   payl.check_word(word);
 
-/*payload Client_sock::RecvUntil(payload payl,uint8_t* word){
-   
-}*/
+}
