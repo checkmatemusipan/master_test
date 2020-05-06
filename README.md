@@ -12,19 +12,19 @@ c/c++(c 80%) socket programing
 
   2.Make socket
 
-   sock.MakeSocket();
+   `sock.MakeSocket();`
 
   3.add host and port
 
-   sock.SetOpt("host(IPv4)",port);
+   `sock.SetOpt("host(IPv4)",port);`
 
   4.connect:
 
-   sock.Connect();
+   `sock.Connect();`
 
   5.send:
 
-   sock.Send(payload);
+   `sock.Send(payload);`
 
   payload class
 
