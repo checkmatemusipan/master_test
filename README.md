@@ -5,9 +5,10 @@ c/c++(c 80%) socket programing
 
 ## how to use(memo 4 me)
   socket class
+
   1.make socket instance  
 
-   Client_sock sock;
+   ```Client_sock sock;```
 
   2.Make socket
 
@@ -29,19 +30,24 @@ c/c++(c 80%) socket programing
 
   1.make payload instance
 
-   payload payl;
+   `payload payl;`
 
   2.add string 
 
-   payl<<"somestring";
+   `payl<<"somestring";`
 
   3.u can use p32 or p64;
 
-   payl.p32(0xdeadbeef,little endian flag);
+   `payl.p32(0xdeadbeef,little endian flag);`
 
   4.check payload
 
-   payl.print_all();
+   `payl.print_all();`
+
+#future add
+  > recv function and recvuntil function;
+  > 
+  
  
 ## bug 
 heap overflow...
