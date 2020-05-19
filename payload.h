@@ -22,6 +22,8 @@ class payload{
      bool ctrlbuff(void);
      //make struct
      bool make_buffer(void);
+     //add char*
+     uint32_t add(const char* str,uint32_t len);
      //add pack32
      uint32_t p32(uint32_t input,bool little);
      //add pack64
@@ -32,7 +34,7 @@ class payload{
      bool check_word(const char* word);
      //debug
      void print_all(void);
-     
+          
 };
 
 #endif

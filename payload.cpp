@@ -150,13 +150,13 @@ uint32_t payload::operator <<(const char* str){
   }
   if( (this->paylength + len) >= this->memlength){
      uint8_t* temp_mov;
-     temp_mov = new uint8_t [this->memlength+len];
+     temp_mov = new uint8_t [this->memlength+len+16];
      memcpy(temp_mov, this->pay,this->paylength);
      delete[] this->pay;
      this->pay = temp_mov;
      memcpy(this->pay+this->paylength, (uint8_t*)str, len);
      this->paylength +=len;
-     this->memlength +=len;
+     this->memlength +=(len+16);
      return this->paylength;
   }
   else{
@@ -190,3 +190,28 @@ bool payload::check_word(const char* word){
   }//for loop end
   return false;  
 }
+
+uint32_t payload::add(const char* str,uint32_t len){
+  if(this->paylength == 0xdeadbeef){
+     this->make_buffer();
+  }
+  if( (this->paylength + len) >= this->memlength){
+     uint8_t* temp_mov;
+     temp_mov = new uint8_t [this->memlength+len+16];
+     memcpy(temp_mov, this->pay,this->paylength);
+     delete[] this->pay;
+     this->pay = temp_mov;
+     memcpy(this->pay+this->paylength, (uint8_t*)str, len);
+     this->paylength +=len;
+     this->memlength +=(len+16);
+     return this->paylength;
+  }
+  else{
+     memcpy(this->pay+this->paylength, (uint8_t*)str, len);
+     this->paylength +=len;
+     return this->paylength;
+  }
+  perror("cannot add str funciton=add");
+  return 0xdead04dd;  
+}
+
