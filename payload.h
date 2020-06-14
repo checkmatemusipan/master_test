@@ -36,11 +36,7 @@ class payload{
      bool check_word(const char* word);
      //debug
      void print_all(void);
-<<<<<<< HEAD
      void print_buf(void);
-=======
-          
->>>>>>> d20a9194f2cd5f8f969f8eb803f239d901a5ac25
 };
 
 #endif

@@ -211,7 +211,7 @@ bool payload::check_word(const char* word){
   }//for loop end
   return false;  
 }
-<<<<<<< HEAD
+
 void payload::print_buf(void){
   uint32_t size=0;
   size = (this->paylength /8);
@@ -229,7 +229,7 @@ void payload::print_buf(void){
   printf("\n");
   return;
 }
-=======
+
 
 uint32_t payload::add(const char* str,uint32_t len){
   if(this->paylength == 0xdeadbeef){
@@ -255,4 +255,3 @@ uint32_t payload::add(const char* str,uint32_t len){
   return 0xdead04dd;  
 }
 
->>>>>>> d20a9194f2cd5f8f969f8eb803f239d901a5ac25
