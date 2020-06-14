@@ -8,7 +8,7 @@
 #include <inttypes.h>
 #include <iostream>
 #include "payload.h"
-
+#include <string.h>
 
 class Client_sock{
  private:
@@ -28,10 +28,10 @@ class Client_sock{
    //connect
    bool Connect();
    //send
-   bool Send(payload payl);
+   bool Send(payload* payl);
    //recv
-   int32_t Recv(payload payl,uint32_t len);
-   //int32_t RecvUntil(payload payl,uint8_t* word);
+   int32_t Recv(payload* payl,uint32_t len);
+   bool RecvUntil(payload* payl,const char* word);
 };
 
 

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "payload.h"
 #include <string>
 #include <string.h>
@@ -31,7 +32,7 @@ payload::payload(){
 }
 
 payload::~payload(){
-   if( this->pay == nullptr || this->memlength != 0)
+   if( this->pay == nullptr || this->memlength == 0)
 	   return;
    if( this->pay != nullptr ){
 	   delete [] this->pay;
@@ -39,6 +40,21 @@ payload::~payload(){
 	   this->paylength =0;
 	   this->pay       =nullptr;
    }
+}
+
+bool payload::clear(void){
+   if( this->pay == nullptr || this->memlength == 0){
+     perror("error class payload function=clear");
+     return false;
+   }
+   if( this-> pay != nullptr){
+     delete [] this->pay;
+     this->memlength =0;
+     this->paylength =0;
+     this->pay       =nullptr;
+     return true;
+   }
+   return false;
 }
 
 void payload::print_all(void){
@@ -62,7 +78,7 @@ bool payload::ctrlbuff(){
 
 bool payload::make_buffer(){
   this->pay = new uint8_t[0x10];
-  this->paylength = 0xdeadbeef; 
+  this->paylength = 0; 
   this->memlength = 0x10;
   if(this->pay == nullptr)
 	  return false;
@@ -124,14 +140,14 @@ uint64_t payload::p64(uint64_t input, bool little){
          delete[] this->pay;
          this->pay = temp_mov;
          //need add input<-arg
-         memcpy( (this->pay)+this->paylength, (uint8_t*)&input_, 8);
+         memcpy( (this->pay)+this->paylength, (void*)&input_, 8);
          this->paylength +=8;
          this->memlength +=0x10;
          return this->paylength;
      }
      else{//ueto onaji shoriyanke misstake sabunn wo kangaeyoune
          uint8_t* temp_mov;
-         memcpy( (this->pay)+this->paylength, (uint8_t*)&input_, 8);
+         memcpy( (this->pay)+this->paylength, (void*)&input_, 8);
          this->paylength +=8;
          return this->paylength;
      }
@@ -142,6 +158,11 @@ uint64_t payload::p64(uint64_t input, bool little){
 payload payload::operator +(payload input){
   return *this;
 }
+
+void payload::operator =(payload input){
+  if(this->clear()){
+  }
+}  
 
 uint32_t payload::operator <<(const char* str){
   uint32_t len = (uint32_t)strlen(str);
@@ -189,4 +210,21 @@ bool payload::check_word(const char* word){
      }
   }//for loop end
   return false;  
+}
+void payload::print_buf(void){
+  uint32_t size=0;
+  size = (this->paylength /8);
+  for(int i=0;i<size/2;i++){
+   printf("0x");
+   for(int j=7;j>-1;j--){
+    printf("%x",this->pay[i*16+j]);
+   }
+   printf(" 0x");
+   for(int j=7;j>-1;j--){
+    printf("%x",this->pay[i*16+j+8]);
+   }
+   printf("\n");
+  }
+  printf("\n");
+  return;
 }

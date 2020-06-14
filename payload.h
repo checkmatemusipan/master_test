@@ -13,13 +13,15 @@ class payload{
      //destructor
      ~payload();
      //operator
-     payload  operator +(payload input);
+     payload  operator +(payload input);// non write yet
+     void     operator =(payload input);
      uint32_t operator <<(const char* str);
      //getter
      uint32_t len() const;
      void*    buf();
      //off buffering
      bool ctrlbuff(void);
+     bool clear(void);
      //make struct
      bool make_buffer(void);
      //add pack32
@@ -32,7 +34,7 @@ class payload{
      bool check_word(const char* word);
      //debug
      void print_all(void);
-     
+     void print_buf(void);
 };
 
 #endif
