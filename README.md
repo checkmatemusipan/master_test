@@ -16,7 +16,13 @@ c/c++(c 80%) socket programing
   5.send:  
     send object  
    `sock.Send(payload);`  
-
+```c++
+  Client_sock sock;
+  socket.MakeSocket();
+  sock.SetOpt("192.168.1*.*",10001);
+  sock.Connect();
+  sockt.Send(payload);
+```  
 ###  payload class
   1.make payload instance  
    `payload payl;`  
