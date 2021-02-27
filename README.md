@@ -22,11 +22,10 @@ c/c++(c 80%) socket programing
    `sock.Connect();`
 
   5.send:
-
+   send payload object
    `sock.Send(payload);`
 
-  payload class
-
+###  payload class
   1.make payload instance
 
    `payload payl;`
