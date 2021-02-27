@@ -15,6 +15,7 @@ int main(void){
   Client_sock sock;
   payload payl;
   payload recv;
+
   sock.MakeSocket();
   sock.SetOpt("127.0.0.1",10001);
   sock.Connect();

@@ -34,7 +34,9 @@ payload::payload(){
 payload::~payload(){
    if( this->pay == nullptr || this->memlength == 0)
 	   return;
-   if( this->pay != nullptr ){
+   if( this->pay != nullptr && this->memlength != 0){
+//	   std::cout << "destructor called"<< std::endl;
+//	   std::cout << (void*)this->pay << std::endl;
 	   delete [] this->pay;
 	   this->memlength =0;
 	   this->paylength =0;
@@ -47,7 +49,7 @@ bool payload::clear(void){
      perror("error class payload function=clear");
      return false;
    }
-   if( this-> pay != nullptr){
+   if( this-> pay != nullptr && this->memlength != 0){
      delete [] this->pay;
      this->memlength =0;
      this->paylength =0;
@@ -67,6 +69,11 @@ void payload::print_all(void){
 uint32_t payload::len() const{
    return this->paylength;
 }
+
+uint32_t payload::mlen() const{
+   return this->memlength;
+}
+
 
 void* payload::buf(){
    return (void*)this->pay;
@@ -156,12 +163,31 @@ uint64_t payload::p64(uint64_t input, bool little){
 }
 
 payload payload::operator +(payload input){
-  return *this;
+  payload victim;
+  if(victim.make_buffer() ){
+
+  }else{
+    std::cerr << "operator + couldnt make_buff"<< std::endl;
+    return victim;
+  }
+  return victim;
 }
 
-void payload::operator =(payload input){
-  if(this->clear()){
+
+payload& payload::operator= (payload& input){
+  if(this->pay != nullptr && this->memlength != 0){
+    delete [] this->pay;
+    this->pay = new uint8_t [input.mlen()];
+    this->memlength = input.mlen();
+    memcpy(this->pay,input.buf(),input.len());
+    this->paylength = input.len();
+  }else if(this->pay == nullptr){
+    this->pay = new uint8_t [input.mlen()];
+    this->memlength = input.mlen();
+    memcpy(this->pay,(char*)input.buf(),input.len());
+    this->paylength = input.len();
   }
+  return *this;
 }  
 
 uint32_t payload::operator <<(const char* str){

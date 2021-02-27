@@ -14,10 +14,11 @@ class payload{
      ~payload();
      //operator
      payload  operator +(payload input);// non write yet
-     void     operator =(payload input);
+     payload&  operator =(payload& input);
      uint32_t operator <<(const char* str);
      //getter
      uint32_t len() const;
+     uint32_t mlen() const;
      void*    buf();
      //off buffering
      bool ctrlbuff(void);
