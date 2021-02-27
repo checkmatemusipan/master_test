@@ -4,8 +4,7 @@
 c/c++(c 80%) socket programing
 
 ## how to use(memo 4 me)
-  socket class
-
+###  socket class
   1.make socket instance  
 
    ```Client_sock sock;```
