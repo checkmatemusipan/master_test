@@ -32,7 +32,7 @@ bool Client_sock::Send(payload* payl){
    return true;
 }
 
-//heap over flow (danger) read-> (buf<len)need fixed
+//heap over flow (danger) read-> (buf<len)need fixed...
 int32_t Client_sock::Recv(payload* payl,uint32_t len){
    uint32_t bin=0;  
    int32_t ret = 0;
